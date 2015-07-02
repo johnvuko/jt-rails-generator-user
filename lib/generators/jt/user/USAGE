@@ -1,0 +1,3 @@
+Create a scaffold for user authentication to your Rails App.
+
+  rails g jt:user
