@@ -3,7 +3,7 @@ module UserAuthentication
 
 	included do
 
-		has_secure_password(validations: false)
+		has_secure_password
 
 		validates :email, presence: true, email_format: true, uniqueness: { case_sensitive: false}
 		validates :password_token, uniqueness: true, if: Proc.new {|u| !u.password_token.blank? }
