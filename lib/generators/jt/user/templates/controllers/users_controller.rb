@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 		if request.post?
 			@user = User.search_by_email_for_authentication(params[:email]).first
 			if @user
-				@user.generate_new_password_token!
 				UserMailer.reset_password(@user.id).deliver_later
 
 				redirect_to root_url
@@ -32,7 +31,9 @@ class UsersController < ApplicationController
 		user = User.where(password_token: params[:token]).first
 		if user
 			set_current_user(user)
-			user.clear_password_token!
+
+			user.generate_new_token(:password_token)
+			user.save
 
 			redirect_to root_url
 		else

@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
 	s.summary = "Generate a scaffold for user authentication in Ruby On Rails"
 	s.description = "JTRailsGeneratorUser is a generator for user authentication. You have the login and sign up page, password forgot feature."
 	s.homepage = 'https://github.com/jonathantribouharet/jt-rails-generator-user'
-	s.version = '1.0.2'
+	s.version = '1.0.3'
 	s.files = `git ls-files`.split("\n")
 	s.require_paths = ['lib']
 	s.authors = ['Jonathan TRIBOUHARET']
@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
 
 	s.add_dependency('validates_email_format_of', '~> 1.6')
 	s.add_dependency('bcrypt', '~> 3.1.7')
+	s.add_dependency('jt-rails-tokenizable', '~> 1.0')
 end

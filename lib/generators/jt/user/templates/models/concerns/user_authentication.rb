@@ -3,10 +3,13 @@ module UserAuthentication
 
 	included do
 
+		include JT::Rails::Tokenizable
+
 		has_secure_password
 
+		tokenize :password_token
+
 		validates :email, presence: true, email_format: true, uniqueness: { case_sensitive: false}
-		validates :password_token, uniqueness: true, if: Proc.new {|u| !u.password_token.blank? }
 		
 		before_save :downcase_email
 
@@ -24,18 +27,6 @@ module UserAuthentication
 
 	def downcase_email
 		self.email.downcase! if self.email
-	end
-
-	def generate_new_password_token!
-		self.password_token = loop do
-			random_token = SecureRandom.urlsafe_base64(128, false)
-			break random_token unless self.class.exists?(password_token: random_token)
-		end
-		self.save!
-	end
-
-	def clear_password_token!
-		self.update_column(:password_token, nil)
 	end
 
 end
