@@ -3,13 +3,11 @@ module UserAuthentication
 
 	included do
 
-		include JT::Rails::Tokenizable
-
 		has_secure_password
 
 		tokenize :password_token
 
-		validates :email, presence: true, email_format: true, uniqueness: { case_sensitive: false}
+		validates :email, presence: true, email_format: true, uniqueness: { case_sensitive: false }
 		
 		before_save :downcase_email
 

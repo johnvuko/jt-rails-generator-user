@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/jt-rails-generator-user.svg)](http://badge.fury.io/rb/jt-rails-generator-user)
 
-JTRailsGeneratorUser is a generator for user authentication. You have the login and sign up page, password forgot feature.
+JTRailsGeneratorUser is a generator for user authentication. You have the login and sign up page and password forgot feature.
 
 ## Installation
 
