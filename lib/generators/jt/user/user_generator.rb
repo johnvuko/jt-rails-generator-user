@@ -4,7 +4,7 @@ module Jt
 		source_root File.expand_path("../templates", __FILE__)
 
 		def create_initializer_file
-			generate "migration", "CreateUsers", "email:string password_digest:string password_token:string"
+			generate "migration", "CreateUsers", "email:string password_digest:string password_token:string last_login_at:datetime last_login_remote_ip:string login_count:integer"
 
 			directory 'controllers', 'app/controllers'
 			directory 'mailers', 'app/mailers'

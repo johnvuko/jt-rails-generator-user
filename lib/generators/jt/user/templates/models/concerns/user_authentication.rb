@@ -15,7 +15,7 @@ module UserAuthentication
 
 	end
 
-	module ClassMethods
+	class_methods do
 
 		def authenticate(email, password)
 			self.search_by_email_for_authentication(email).first.try(:authenticate, password)
@@ -25,6 +25,16 @@ module UserAuthentication
 
 	def downcase_email
 		self.email.downcase! if self.email
+	end
+
+	def increment_login_stats!(remote_ip)
+		attributes = {
+			last_login_at: Time.now,
+			last_login_remote_ip: remote_ip,
+			login_count: (self.login_count || 0) + 1
+		}
+
+		self.update_columns(attributes)
 	end
 
 end

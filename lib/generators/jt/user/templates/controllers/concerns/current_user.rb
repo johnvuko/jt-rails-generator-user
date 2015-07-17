@@ -7,6 +7,7 @@ module CurrentUser
 
 	def set_current_user(user)
 		session[:user_id] = user.id
+		user.increment_login_stats!(request.remote_ip)
 	end
 
 	def current_user
