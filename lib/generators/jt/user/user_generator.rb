@@ -13,8 +13,7 @@ module Jt
 
 			route "resources :users, only: [:new, :create] do
   collection do
-    get 'password_forgot' => 'users#password_forgot', as: :password_forgot
-    post 'password_forgot' => 'users#password_forgot'
+    match 'password_forgot', as: :password_forgot, via: [:get, :post]
 
     get 'reset_password/:token' => 'users#reset_password', as: :reset_password
   end

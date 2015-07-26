@@ -11,7 +11,8 @@ module UserAuthentication
 		
 		before_save :downcase_email
 
-		scope :search_by_email_for_authentication, ->(email = nil) { where(email: email.to_s.downcase).where('password_digest IS NOT NULL') }
+		scope :search_by_email, ->(email) { where(email: email.to_s.downcase) }
+		scope :search_by_email_for_authentication, ->(email) { search_by_email(email).where('password_digest IS NOT NULL') }
 
 	end
 

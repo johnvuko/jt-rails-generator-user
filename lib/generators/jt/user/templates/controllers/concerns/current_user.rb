@@ -18,13 +18,17 @@ module CurrentUser
 	def require_user
 		if !current_user
 			redirect_to login_url
+			return false
 		end
+		true
 	end
 	
 	def require_no_user
 		if current_user
 			redirect_to root_url
+			return false
 		end
-	end	
+		true
+	end
 
 end

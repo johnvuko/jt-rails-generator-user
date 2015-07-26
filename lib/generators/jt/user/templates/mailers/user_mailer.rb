@@ -1,4 +1,4 @@
-class UserMailer < ApplicationMailer
+class UserMailer < ActionMailer::Base
 
 	def reset_password(user_id)
 		@user = User.find(user_id)
