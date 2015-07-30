@@ -15,8 +15,13 @@ module CurrentUser
 		@current_user
 	end
 
+	def store_location
+		session[:return_to] = request.fullpath if request.get? && !request.xhr?
+	end
+
 	def require_user
 		if !current_user
+			store_location
 			redirect_to login_url
 			return false
 		end
@@ -29,6 +34,11 @@ module CurrentUser
 			return false
 		end
 		true
+	end
+
+	def redirect_back_or_default(default_url)
+		redirect_to session[:return_to] || default_url
+		session[:return_to] = nil
 	end
 
 end
