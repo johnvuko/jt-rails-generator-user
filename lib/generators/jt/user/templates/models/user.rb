@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
 
-	include UserAuthentication
+	include JT::User::Authentication
 
 end

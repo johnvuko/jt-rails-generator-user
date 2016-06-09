@@ -1,4 +1,4 @@
-module UserAuthentication
+module JT::User::Authentication
 	extend ActiveSupport::Concern
 
 	included do
