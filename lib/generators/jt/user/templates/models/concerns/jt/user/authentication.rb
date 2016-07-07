@@ -12,7 +12,7 @@ module JT::User::Authentication
 		before_save :downcase_email
 
 		scope :search_by_email, ->(email) { where(email: email.to_s.downcase) }
-		scope :search_by_email_for_authentication, ->(email) { search_by_email(email).where('password_digest IS NOT NULL') }
+		scope :search_by_email_for_authentication, ->(email) { search_by_email(email).where.not(password_digest: nil) }
 
 	end
 
