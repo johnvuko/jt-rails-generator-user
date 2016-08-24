@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			set_current_user(@user)
-			redirect_to root_url
+			redirect_after_login
 		else
 			render :new
 		end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 			user.generate_new_token(:password_token)
 			user.save
 
-			redirect_to root_url
+			redirect_after_login
 		else
 			redirect_to root_url
 		end

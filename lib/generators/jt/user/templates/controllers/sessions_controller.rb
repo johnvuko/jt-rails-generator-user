@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
 		if user
 			set_current_user(user)
-			redirect_to root_url
+			redirect_after_login
 		else
 			render :new
 		end

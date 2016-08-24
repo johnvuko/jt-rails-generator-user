@@ -41,4 +41,8 @@ module CurrentUser
 		session[:return_to] = nil
 	end
 
+	def redirect_after_login
+		redirect_to root_url
+	end
+
 end
