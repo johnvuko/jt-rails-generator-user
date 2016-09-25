@@ -42,7 +42,7 @@ module CurrentUser
 	end
 
 	def redirect_after_login
-		redirect_to root_url
+		redirect_back_or_default root_url
 	end
 
 end
