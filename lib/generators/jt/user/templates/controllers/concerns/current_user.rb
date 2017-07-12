@@ -15,9 +15,13 @@ module CurrentUser
 		@current_user
 	end
 
-	def store_location
-		session[:return_to] = request.fullpath if request.get? && !request.xhr?
-	end
+  def store_location(url = nil)
+    if url
+      session[:return_to] = url
+    elsif request.get? && !request.xhr?
+      session[:return_to] = request.fullpath
+    end
+  end
 
 	def require_user
 		if !current_user
