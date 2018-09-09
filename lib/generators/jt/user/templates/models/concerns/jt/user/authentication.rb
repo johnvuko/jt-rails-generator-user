@@ -9,7 +9,7 @@ module JT::User::Authentication
 
 		validates :email, presence: true, email_format: true, uniqueness: { case_sensitive: false }
 		
-		before_save :downcase_email
+		before_validation :downcase_email
 
 		scope :search_by_email, ->(email) { where(email: email.to_s.downcase.strip) }
 		scope :search_by_email_for_authentication, ->(email) { search_by_email(email).where.not(password_digest: nil) }
@@ -25,7 +25,7 @@ module JT::User::Authentication
 	end
 
 	def downcase_email
-		self.email = self.email.downcase.strip if self.email
+		self.email = self.email.downcase.strip.presence if self.email
 	end
 
 	def increment_login_stats!(remote_ip)
